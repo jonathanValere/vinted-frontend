@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Product from "../components/Product";
+import Banner from "../components/Banner";
 
 export default function Home() {
   //Déclaration des states ---
@@ -26,19 +27,27 @@ export default function Home() {
   };
   // -----
 
-  return isLoading ? (
-    <p>En chargement...</p>
-  ) : (
-    <section>
-      <div className="container">
-        <div className="products">
-          {/* Boucle sur les offres */}
-          {data.offers.map((offer) => (
-            // Afficher chacun des produits
-            <Product offer={offer} key={offer._id} />
-          ))}
+  return (
+    <>
+      <section>
+        <Banner />
+      </section>
+
+      <section>
+        <div className="container">
+          {isLoading ? (
+            <p>En chargement...</p>
+          ) : (
+            <div className="products">
+              {/* Boucle sur les offres */}
+              {data.offers.map((offer) => (
+                // Afficher chacun des produits
+                <Product offer={offer} key={offer._id} />
+              ))}
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

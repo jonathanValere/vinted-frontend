@@ -1,0 +1,33 @@
+.banner {
+  background-color: var(--primary-color);
+  padding: 2em;
+  height: 450px;
+  margin-bottom: 2em;
+  background-image: url("../assets/img/banner-vinted.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bloc-info {
+  background-color: #fff;
+  width: 12em;
+  padding: 1.7em 1em 1.2em 1em;
+  font-size: 2.2em;
+  margin-top: 2em;
+  border-radius: var(--border-radius);
+}
+
+.bloc-info h1 {
+  margin-bottom: 1em;
+}
+
+.bloc-info button {
+  font-size: 0.4em;
+  color: #fff;
+  padding: 1em;
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
