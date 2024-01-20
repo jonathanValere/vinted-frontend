@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Product from "../components/Product";
 
 export default function Home() {
+  //Déclaration des states ---
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  // Gestion du useEffect ----
   useEffect(() => {
     fetchData();
   }, []);
@@ -20,22 +24,21 @@ export default function Home() {
       console.log(error.response);
     }
   };
+  // -----
+
   return isLoading ? (
     <p>En chargement...</p>
   ) : (
-    <main>
-      {data.offers.map((offer) => (
-        <article key={offer._id}>
-          <div>
-            {console.log(offer.owner.account.avatar.secure_url)}
-            <img
-              src={offer.owner.account.avatar.secure_url}
-              alt="avatar"
-            />{" "}
-            {offer.owner.account.username}
-          </div>
-        </article>
-      ))}
-    </main>
+    <section>
+      <div className="container">
+        <div className="products">
+          {/* Boucle sur les offres */}
+          {data.offers.map((offer) => (
+            // Afficher chacun des produits
+            <Product offer={offer} key={offer._id} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
