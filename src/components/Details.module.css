@@ -1,0 +1,11 @@
+.details-info {
+  display: flex;
+}
+
+.details-info span:first-child {
+  color: #afafaf;
+}
+
+span {
+  width: 50%;
+}

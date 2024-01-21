@@ -9,9 +9,6 @@ export default function Header() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/offer">Offer</Link>
-          </li>
         </ul>
       </nav>
       <Button title="S'inscrire" />
