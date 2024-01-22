@@ -5,6 +5,7 @@ import Button from "../components/Button";
 
 export default function Offer({ data }) {
   const { id } = useParams();
+  console.log(data);
   return (
     <section className={styles["section-offer"]}>
       <div className="container">

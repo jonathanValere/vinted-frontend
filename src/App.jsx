@@ -13,6 +13,7 @@ import {
   faMagnifyingGlass,
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import NotFound from "./pages/NotFound";
 library.add(
   faEnvelope,
   faKey,
@@ -59,8 +60,7 @@ function App() {
             path="/offer/:id"
             element={<Offer data={data} loading={isLoading} />}
           />
-          <Route path="/offer" element={<Offer />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </Router>
