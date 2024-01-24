@@ -1,18 +1,48 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import styles from "./Offer.module.css";
+
 import Details from "../components/Details";
 import Button from "../components/Button";
+import axios from "axios";
 
-export default function Offer({ data }) {
+export default function Offer() {
+  //Déclaration des states ---
+  const [offer, setOffer] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  //Récupération de l'ID
   const { id } = useParams();
-  console.log(data);
+
+  // Gestion du useEffect ----
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+      );
+      setOffer(response.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+    setIsLoading(false);
+  };
+
+  // -----
+
   return (
-    <section className={styles["section-offer"]}>
-      <div className="container">
-        <article>
-          {data.offers.map(
-            (offer) =>
-              offer._id === id && (
+    <>
+      <section className={styles["section-offer"]}>
+        <div className="container">
+          {isLoading ? (
+            <p>En chargement...</p>
+          ) : (
+            <article>
+              {offer._id === id && (
                 <div key={offer._id} className={styles.product}>
                   <img
                     src={offer.product_image.secure_url}
@@ -22,33 +52,13 @@ export default function Offer({ data }) {
                   <aside className={styles.details}>
                     <h2>{offer.product_price} €</h2>
                     {offer.product_details.map((detail, index) => {
+                      const keyTab = Object.keys(detail);
                       return (
-                        <div key={index}>
-                          {detail.MARQUE && (
-                            <Details title="MARQUE" detail={detail.MARQUE} />
-                          )}
-                          {detail.TAILLE && (
-                            <Details title="TAILLE" detail={detail.TAILLE} />
-                          )}
-                          {detail["ÉTAT"] && (
-                            <Details title="ÉTAT" detail={detail.ÉTAT} />
-                          )}
-                          {detail.COULEUR && (
-                            <Details title="COULEUR" detail={detail.COULEUR} />
-                          )}
-                          {detail.EMPLACEMENT && (
-                            <Details
-                              title="EMPLACEMENT"
-                              detail={detail.EMPLACEMENT}
-                            />
-                          )}
-                          {detail["MODES DE PAIEMENT"] && (
-                            <Details
-                              title="MODES DE PAIEMENT"
-                              detail={detail.EMPLACEMENT}
-                            />
-                          )}
-                        </div>
+                        <Details
+                          key={index}
+                          title={keyTab[0]}
+                          detail={detail[keyTab[0]]}
+                        />
                       );
                     })}
                     <div className={styles["details-bottom"]}>
@@ -72,10 +82,11 @@ export default function Offer({ data }) {
                     />
                   </aside>
                 </div>
-              )
+              )}
+            </article>
           )}
-        </article>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

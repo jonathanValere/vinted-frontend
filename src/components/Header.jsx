@@ -4,8 +4,9 @@ import logo from "../assets/img/logo_vinted.svg";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import Info from "./Info";
+import Filter from "./Filter";
 
-export default function Header() {
+export default function Header({ filter }) {
   return (
     <header>
       <Info />
@@ -28,6 +29,7 @@ export default function Header() {
             <Button title="Vends tes articles" />
           </nav>
         </div>
+        {filter && <Filter />}
       </div>
     </header>
   );

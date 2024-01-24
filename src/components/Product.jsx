@@ -13,7 +13,6 @@ export default function Product({ ...props }) {
             height={30}
           />
         )}
-        {props.offer.owner.account.username}
       </div>
       <img
         src={props.offer.product_image.secure_url}
