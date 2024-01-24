@@ -11,6 +11,8 @@ export default function Offer() {
   //Déclaration des states ---
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offer/";
+  const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/";
 
   //Récupération de l'ID
   const { id } = useParams();
@@ -22,9 +24,7 @@ export default function Offer() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
-      );
+      const response = await axios.get(`${backOwn}${id}`);
       setOffer(response.data);
     } catch (error) {
       console.log(error.response);

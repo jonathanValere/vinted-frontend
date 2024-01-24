@@ -1,5 +1,7 @@
 import "./App.css";
+import Cookies from "js-cookie";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
@@ -12,6 +14,7 @@ import {
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import NotFound from "./pages/NotFound";
+import SignUp from "./pages/Signup";
 library.add(
   faEnvelope,
   faKey,
@@ -21,7 +24,7 @@ library.add(
 );
 
 function App() {
-  const url = "https://lereacteur-vinted-api.herokuapp.com/offers";
+  const [token, setToken] = useState(Cookies.get("token") || "");
   return (
     <Router>
       <Header />
@@ -29,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

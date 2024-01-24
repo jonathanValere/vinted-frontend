@@ -24,7 +24,9 @@ export default function Header({ filter }) {
             />
           </div>
           <nav className={styles["navigation-header"]}>
-            <Button title="S'inscrire" />
+            <Link to="/signup">
+              <Button title="S'inscrire" />
+            </Link>
             <Button title="Se connecter" />
             <Button title="Vends tes articles" />
           </nav>

@@ -9,6 +9,8 @@ export default function Home() {
   //Déclaration des states ---
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
+  const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
 
   // Gestion du useEffect ----
   useEffect(() => {
@@ -17,9 +19,7 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers"
-      );
+      const response = await axios.get(backOwn);
       setData(response.data);
       setIsLoading(false);
     } catch (error) {
