@@ -1,9 +1,37 @@
+/* font */
+@font-face {
+  font-family: "MaisonNeue";
+  src: url("../src/assets/fonts/MaisonNeue.eot");
+  src: url("../src/assets/fonts/MaisonNeue.eot") format("embedded-opentype"),
+    url("../src/assets/fonts/MaisonNeue.woff2") format("woff2"),
+    url("../src/assets/fonts/MaisonNeue.woff") format("woff"),
+    url("../src/assets/fonts/MaisonNeue.ttf") format("truetype"),
+    url("../src/assets/fonts/MaisonNeue.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaisonNeue-bold";
+  src: url("../src/assets/fonts/MaisonNeue-bold.eot");
+  src: url("Font_1.eot?#iefix") format("embedded-opentype"),
+    url("../src/assets/fonts/MaisonNeue-bold.woff2") format("woff2"),
+    url("../src/assets/fonts/MaisonNeue-bold.woff") format("woff"),
+    url("../src/assets/fonts/MaisonNeue-bold.ttf") format("truetype"),
+    url("../src/assets/fonts/MaisonNeue-bold.svg") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* VARIABLES */
 :root {
   --primary-color: #057580;
   --secondary-color: #7e7e7e;
   --error-color: #a43333;
   --border-radius: 4px;
+  font-family: "MaisonNeue", sans-serif;
 }
 
 /* ------------- */
