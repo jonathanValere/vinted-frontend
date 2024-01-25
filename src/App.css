@@ -2,6 +2,7 @@
 :root {
   --primary-color: #057580;
   --secondary-color: #7e7e7e;
+  --error-color: #a43333;
   --border-radius: 4px;
 }
 

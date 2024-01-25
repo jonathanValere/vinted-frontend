@@ -6,7 +6,7 @@ import styles from "./Login.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setToken }) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ export default function Login() {
         secure: true,
         expires: 1,
       });
+      setToken(Cookies.get("userToken"));
       return navigate("/");
     } catch (error) {
       const { message } = error.response.data;

@@ -25,16 +25,16 @@ library.add(
 );
 
 function App() {
-  const [token, setToken] = useState(Cookies.get("token") || "");
+  const [token, setToken] = useState(Cookies.get("userToken") || "");
   return (
     <Router>
-      <Header />
+      <Header token={token} setToken={setToken} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
