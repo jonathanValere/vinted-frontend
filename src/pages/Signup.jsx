@@ -35,8 +35,8 @@ export default function SignUp() {
 
   // Gestion de la validation du formulaire
   const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      event.preventDefault();
       const response = await axios.post(backOwn, user);
       Cookies.set("userToken", response.data.token, { expires: 1 });
       setIsEmailExist("");
@@ -66,7 +66,7 @@ export default function SignUp() {
               <input
                 type="email"
                 value={user.email}
-                placeholder="email"
+                placeholder="Email"
                 onChange={(event) => handleChangeGeneric(event, "email")}
               />
             </label>

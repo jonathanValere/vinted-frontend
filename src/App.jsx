@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/Signup";
+import Login from "./pages/Login";
 library.add(
   faEnvelope,
   faKey,
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
