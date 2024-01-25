@@ -88,6 +88,10 @@
   margin-top: 2rem;
 }
 
+.form button:hover {
+  opacity: 0.9;
+}
+
 .error {
   color: #fff;
   margin-top: 0.2rem;
