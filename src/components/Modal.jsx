@@ -1,12 +1,11 @@
-import styles from "./Signup.module.css";
-
-import { useNavigate, Link } from "react-router-dom";
+import styles from "./Modal.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-import Modal from "../components/Modal";
 
-export default function SignUp({ visible, setVisible }) {
+export default function Modal({ setVisible }) {
   const [isEmailExist, setIsEmailExist] = useState("");
   const backLeReacteur =
     "https://lereacteur-vinted-api.herokuapp.com/user/signup";
@@ -41,16 +40,23 @@ export default function SignUp({ visible, setVisible }) {
       const response = await axios.post(backOwn, user);
       Cookies.set("userToken", response.data.token, { expires: 1 });
       setIsEmailExist("");
-      return navigate("/");
+      setVisible(false);
+      navigate("/");
     } catch (error) {
       const { message } = error.response.data;
       setIsEmailExist(message);
     }
   };
 
+  const handleGoLogin = () => {
+    setVisible(false);
+    return navigate("/login");
+  };
+
   return (
-    <section className={styles["section-signup"]}>
-      <div className="container">
+    <div className={styles["modal-root"]}>
+      <div className={styles.modal}>
+        <FontAwesomeIcon icon="xmark" onClick={() => setVisible(false)} />
         <div className={styles["form-container"]}>
           <h1>S'inscrire</h1>
           {isEmailExist && <p className={styles.error}>{isEmailExist}</p>}
@@ -96,11 +102,12 @@ export default function SignUp({ visible, setVisible }) {
               </p>
             </label>
             <button>S'inscrire</button>
-            <Link to="/">Tu as déjà un compte ? Connecte-toi !</Link>
+            <p id={styles["btn-go-login"]} onClick={handleGoLogin}>
+              Tu as déjà un compte ? Connecte-toi !
+            </p>
           </form>
         </div>
       </div>
-      <button onClick={() => setVisible(!visible)}>Afficher</button>
-    </section>
+    </div>
   );
 }

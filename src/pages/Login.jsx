@@ -6,7 +6,7 @@ import styles from "./Login.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, setVisible }) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -61,9 +61,9 @@ export default function Login({ setToken }) {
               />
             </label>
             <button>Se connecter</button>
-            <Link to="/signup">
+            <p id={styles["btn-go-signup"]} onClick={() => setVisible(true)}>
               Tu n'as pas encore de compte ? Inscris-toi !
-            </Link>
+            </p>
           </form>
         </div>
       </div>

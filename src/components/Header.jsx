@@ -8,7 +8,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Info from "./Info";
 import Filter from "./Filter";
 
-export default function Header({ filter, token, setToken }) {
+export default function Header({
+  filter,
+  token,
+  setToken,
+  visible,
+  setVisible,
+}) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -39,7 +45,9 @@ export default function Header({ filter, token, setToken }) {
               </button>
             ) : (
               <>
-                <Link to="/signup">S'inscrire</Link>
+                {/* <Link to="/signup">S'inscrire</Link> */}
+                <Link onClick={() => setVisible(!visible)}>S'inscrire</Link>
+
                 <Link to="/login">Se connecter</Link>
               </>
             )}
