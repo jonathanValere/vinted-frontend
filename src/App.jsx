@@ -8,9 +8,6 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faEnvelope,
-  faKey,
-  faListAlt,
   faMagnifyingGlass,
   faCircleExclamation,
   faXmark,
@@ -18,14 +15,7 @@ import {
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
-library.add(
-  faEnvelope,
-  faKey,
-  faListAlt,
-  faMagnifyingGlass,
-  faCircleExclamation,
-  faXmark
-);
+library.add(faMagnifyingGlass, faCircleExclamation, faXmark);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || "");
