@@ -18,8 +18,10 @@ import Login from "./pages/Login";
 library.add(faMagnifyingGlass, faCircleExclamation, faXmark);
 
 function App() {
+  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
   const [token, setToken] = useState(Cookies.get("userToken") || "");
   const [visible, setVisible] = useState(false);
+  const [data, setData] = useState([]);
   return (
     <Router>
       <Header
@@ -27,10 +29,16 @@ function App() {
         setToken={setToken}
         visible={visible}
         setVisible={setVisible}
+        data={data}
+        setData={setData}
+        url={url}
       />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home data={data} setData={setData} url={url} />}
+          />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/signup" element={<SignUp />} />
           <Route

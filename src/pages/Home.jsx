@@ -5,12 +5,11 @@ import Product from "../components/Product";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Home({ data, setData, url }) {
   //Déclaration des states ---
-  const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
-  const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
+  // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
+  // const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
 
   // Gestion du useEffect ----
   useEffect(() => {
@@ -19,14 +18,15 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(backOwn);
-      setData(response.data);
+      const response = await axios.get(url);
+      setData(response.data.offers);
       setIsLoading(false);
     } catch (error) {
       console.log(error.response);
     }
   };
 
+  console.log(data);
   // -----
   return (
     <>
@@ -40,10 +40,9 @@ export default function Home() {
             <p>En chargement...</p>
           ) : (
             <>
-              <h3 className="subtitle">{data.count} articles</h3>
               <div className="products">
                 {/* Boucle sur les offres */}
-                {data.offers.map((offer, index) => (
+                {data.map((offer) => (
                   // Afficher chacun des produits
                   <div key={offer._id}>
                     <Link
