@@ -40,6 +40,10 @@
   margin: 0 auto;
 }
 
+main {
+  margin-top: 7rem;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;

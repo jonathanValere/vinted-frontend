@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import styles from "./Login.module.css";
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ setToken, setVisible }) {
   const [user, setUser] = useState({ email: "", password: "" });

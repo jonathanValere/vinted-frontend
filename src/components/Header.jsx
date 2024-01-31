@@ -68,7 +68,7 @@ export default function Header({
               </>
             )}
 
-            <Link>Vends tes articles</Link>
+            <Link to="/publish">Vends tes articles</Link>
           </nav>
         </div>
         <Filter data={data} setData={setData} />

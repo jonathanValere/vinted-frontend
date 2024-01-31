@@ -1,0 +1,21 @@
+.publish-section {
+  margin-top: 7rem;
+}
+
+.publish-title {
+  margin-top: 11rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.publish-part {
+  background-color: blueviolet;
+}
+
+.publish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 7rem;
+}
