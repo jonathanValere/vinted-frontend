@@ -26,7 +26,6 @@ export default function Home({ data, setData, url }) {
     }
   };
 
-  console.log(data);
   // -----
   return (
     <>

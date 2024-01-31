@@ -1,7 +1,8 @@
 import styles from "./Publish.module.css";
+import { Navigate } from "react-router-dom";
 
-export default function Publish() {
-  return (
+export default function Publish({ token }) {
+  return token ? (
     <section className={styles["publish-section"]}>
       <div className="container">
         <h1 className={styles["publish-title"]}>Vends ton article</h1>
@@ -54,5 +55,7 @@ export default function Publish() {
         </form>
       </div>
     </section>
+  ) : (
+    <Navigate to="/login" />
   );
 }
