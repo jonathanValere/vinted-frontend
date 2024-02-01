@@ -18,8 +18,15 @@ import {
   faCircleExclamation,
   faXmark,
   faHandPointUp,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faMagnifyingGlass, faCircleExclamation, faXmark, faHandPointUp);
+library.add(
+  faMagnifyingGlass,
+  faCircleExclamation,
+  faXmark,
+  faHandPointUp,
+  faPlus
+);
 
 function App() {
   const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers"; // url du backend

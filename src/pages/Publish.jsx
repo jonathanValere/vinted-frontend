@@ -1,6 +1,8 @@
 import styles from "./Publish.module.css";
 import axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -66,105 +68,129 @@ export default function Publish({ token }) {
           className={styles["publish-form"]}
           onSubmit={handleSubmit}
         >
-          <label htmlFor="file">
-            <input
-              type="file"
-              name="file"
-              id="file"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </label>
-          <label htmlFor="title">
-            Titre
-            <input
-              type="text"
-              name="title"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-          <label htmlFor="description">
-            Décris ton article
-            <textarea
-              name="description"
-              id="description"
-              cols="30"
-              rows="10"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </label>
-          <label htmlFor="condition">
-            Condition
-            <input
-              type="text"
-              name="condition"
-              id="condition"
-              value={condition}
-              onChange={(e) => setCondition(e.target.value)}
-            />
-          </label>
-          <label htmlFor="brand">
-            Marque
-            <input
-              type="text"
-              name="brand"
-              id="brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            />
-          </label>
-          <label htmlFor="size">
-            Taille
-            <input
-              type="text"
-              name="size"
-              id="size"
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-            />
-          </label>
-          <label htmlFor="color">
-            Couleur
-            <input
-              type="text"
-              name="color"
-              id="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </label>
-
-          <label htmlFor="city">
-            Lieu
-            <input
-              type="text"
-              name="city"
-              id="city"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </label>
-          <label htmlFor="price">
-            Prix
-            <input
-              type="text"
-              name="price"
-              id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </label>
-          <label htmlFor="isChange">
-            <input
-              type="checkbox"
-              name="isChange"
-              id="isChange"
-              onChange={() => setIsInterestingToChange(!isInterestingToChange)}
-            />
-            Je suis intéressé(e) par les échanges
-          </label>
+          <div className={styles["publish-form-part"]}>
+            <div id={styles.files}>
+              <label htmlFor="file">
+                <p id={styles["file-button"]}>
+                  <FontAwesomeIcon icon="plus" /> Ajoute une photo
+                </p>
+                <input
+                  type="file"
+                  name="file"
+                  id="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </label>
+            </div>
+          </div>
+          <div className={styles["publish-form-part"]}>
+            <div className={styles.champs}>
+              <label htmlFor="title">Titre</label>
+              <input
+                placeholder="ex : Chemise Sézane verte"
+                type="text"
+                name="title"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Décris ton article</label>
+              <textarea
+                placeholder="ex : Porté quelques fois, taille correctement"
+                name="description"
+                id="description"
+                cols="30"
+                rows="5"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+          </div>
+          <div className={styles["publish-form-part"]}>
+            <div>
+              <label htmlFor="brand">Marque</label>
+              <input
+                placeholder="ex : Zara"
+                type="text"
+                name="brand"
+                id="brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="size">Taille</label>
+              <input
+                placeholder="ex : L / 40 / 12"
+                type="text"
+                name="size"
+                id="size"
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="color">Couleur</label>
+              <input
+                placeholder="ex : Vert"
+                type="text"
+                name="color"
+                id="color"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="condition">Etat</label>
+              <input
+                placeholder="ex : Neuf avec étiquette"
+                type="text"
+                name="condition"
+                id="condition"
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="city">Lieu</label>
+              <input
+                placeholder="ex : Cayenne"
+                type="text"
+                name="city"
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={styles["publish-form-part"]}>
+            <div>
+              <label htmlFor="price">Prix</label>
+              <input
+                placeholder="0.00 €"
+                type="text"
+                name="price"
+                id="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div>
+              <label id={styles.isChange} htmlFor="isChange">
+                <input
+                  type="checkbox"
+                  name="isChange"
+                  id="isChange"
+                  onChange={() =>
+                    setIsInterestingToChange(!isInterestingToChange)
+                  }
+                />
+                Je suis intéressé(e) par les échanges
+              </label>
+            </div>
+          </div>
           <button type="submit">Ajouter</button>
         </form>
       </div>
