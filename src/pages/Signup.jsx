@@ -1,18 +1,13 @@
 import styles from "./Signup.module.css";
 
-import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
-import Modal from "../components/Modal";
 
 export default function SignUp({ visible, setVisible }) {
-  const [isEmailExist, setIsEmailExist] = useState("");
-  const backLeReacteur =
-    "https://lereacteur-vinted-api.herokuapp.com/user/signup";
-  const backOwn =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -20,7 +15,10 @@ export default function SignUp({ visible, setVisible }) {
     newsletter: false,
   });
 
-  // Gestion du formulaire
+  const backOwn =
+    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
+
+  // Gestion du formulaire -------
   const handleChangeGeneric = (event, field) => {
     // Copie du state
     const copyUser = { ...user };
@@ -39,12 +37,15 @@ export default function SignUp({ visible, setVisible }) {
     event.preventDefault();
     try {
       const response = await axios.post(backOwn, user);
+      // Création du cookie qui expire au bout d'un jour
       Cookies.set("userToken", response.data.token, { expires: 1 });
-      setIsEmailExist("");
+      // Mise à zéro le message d'erreur
+      setErrorMessage("");
+      // Revenir à la page d'accueil
       return navigate("/");
     } catch (error) {
       const { message } = error.response.data;
-      setIsEmailExist(message);
+      setErrorMessage(message);
     }
   };
 
@@ -53,7 +54,7 @@ export default function SignUp({ visible, setVisible }) {
       <div className="container">
         <div className={styles["form-container"]}>
           <h1>S'inscrire</h1>
-          {isEmailExist && <p className={styles.error}>{isEmailExist}</p>}
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
           <form onSubmit={handleSubmit} className={styles.form}>
             <label htmlFor="">
               <input

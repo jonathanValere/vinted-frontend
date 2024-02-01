@@ -1,13 +1,14 @@
 import styles from "./Header.module.css";
 
+import { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
+
+import Info from "./Info";
+import Filter from "./Filter";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/img/logo_vinted.svg";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useState } from "react";
-import Info from "./Info";
-import Filter from "./Filter";
 
 export default function Header({
   token,
@@ -18,7 +19,7 @@ export default function Header({
   setData,
 }) {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams(); // A FAIRE !!!
   const [search, setSearch] = useState("");
 
   const handleLogout = () => {

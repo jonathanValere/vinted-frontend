@@ -1,23 +1,23 @@
 import styles from "./Modal.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Modal({ setVisible }) {
   const [isEmailExist, setIsEmailExist] = useState("");
-  const backLeReacteur =
-    "https://lereacteur-vinted-api.herokuapp.com/user/signup";
-  const backOwn =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
-  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     email: "",
     password: "",
     newsletter: false,
   });
+  const backOwn =
+    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
+  const navigate = useNavigate();
 
   // Gestion du formulaire
   const handleChangeGeneric = (event, field) => {
@@ -48,7 +48,7 @@ export default function Modal({ setVisible }) {
     }
   };
 
-  const handleGoLogin = () => {
+  const handleGoLoginPage = () => {
     setVisible(false);
     return navigate("/login");
   };
@@ -101,8 +101,8 @@ export default function Modal({ setVisible }) {
                 confirme avoir au moins 18 ans.
               </p>
             </label>
-            <button>S'inscrire</button>
-            <p id={styles["btn-go-login"]} onClick={handleGoLogin}>
+            <button type="submit">S'inscrire</button>
+            <p id={styles["btn-go-login"]} onClick={handleGoLoginPage}>
               Tu as déjà un compte ? Connecte-toi !
             </p>
           </form>

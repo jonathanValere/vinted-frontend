@@ -17,11 +17,12 @@ import {
   faMagnifyingGlass,
   faCircleExclamation,
   faXmark,
+  faHandPointUp,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faMagnifyingGlass, faCircleExclamation, faXmark);
+library.add(faMagnifyingGlass, faCircleExclamation, faXmark, faHandPointUp);
 
 function App() {
-  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
+  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers"; // url du backend
   const [token, setToken] = useState(Cookies.get("userToken") || "");
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState([]);

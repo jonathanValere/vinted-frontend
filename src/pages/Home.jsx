@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Product from "../components/Product";
 import Banner from "../components/Banner";
-import { Link } from "react-router-dom";
 
 export default function Home({ data, setData, url }) {
   //Déclaration des states ---
   const [isLoading, setIsLoading] = useState(true);
+  // Pour test ---
   // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
-  // const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers";
+  //  ---
 
   // Gestion du useEffect ----
   useEffect(() => {

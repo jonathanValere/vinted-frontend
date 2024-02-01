@@ -1,10 +1,9 @@
-import axios from "axios";
-import Cookies from "js-cookie";
-
 import styles from "./Login.module.css";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function Login({ setToken, setVisible }) {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -14,10 +13,11 @@ export default function Login({ setToken, setVisible }) {
     "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
 
   const handleChangeGeneric = (event, field) => {
+    // Copie du state "user"
     const copyUser = { ...user };
-
+    // Modification de la copie
     copyUser[field] = event.target.value;
-
+    // Mise à jour du state avec la copie
     setUser(copyUser);
   };
 
@@ -44,23 +44,27 @@ export default function Login({ setToken, setVisible }) {
           <h1>Se connecter</h1>
           {error && <p className={styles.error}>{error}</p>}
           <form onSubmit={handleSubmit} className={styles.form}>
-            <label htmlFor="">
+            <label htmlFor="email">
               <input
                 type="email"
-                value={user.email}
+                name="email"
+                id="email"
                 placeholder="Adresse email"
+                value={user.email}
                 onChange={(event) => handleChangeGeneric(event, "email")}
               />
             </label>
-            <label htmlFor="">
+            <label htmlFor="password">
               <input
                 type="password"
-                value={user.password}
+                name="password"
+                id="password"
                 placeholder="Mot de passe"
+                value={user.password}
                 onChange={(event) => handleChangeGeneric(event, "password")}
               />
             </label>
-            <button>Se connecter</button>
+            <button type="submit">Se connecter</button>
             <p id={styles["btn-go-signup"]} onClick={() => setVisible(true)}>
               Tu n'as pas encore de compte ? Inscris-toi !
             </p>

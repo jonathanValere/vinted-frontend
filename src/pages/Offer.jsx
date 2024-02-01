@@ -1,17 +1,19 @@
+import styles from "./Offer.module.css";
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import styles from "./Offer.module.css";
+import axios from "axios";
 
 import Details from "../components/Details";
 import Button from "../components/Button";
-import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Offer() {
   //Déclaration des states ---
   const [offer, setOffer] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offer/";
+  // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offer/";
   const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/";
 
   //Récupération de l'ID
@@ -31,7 +33,6 @@ export default function Offer() {
     }
     setIsLoading(false);
   };
-
   // -----
 
   return (
@@ -64,6 +65,12 @@ export default function Offer() {
                     <div className={styles["details-bottom"]}>
                       <p>{offer.product_name}</p>
                       <p>{offer.product_description}</p>
+                      {offer.product_change && (
+                        <p className={styles.interesting}>
+                          <FontAwesomeIcon icon="hand-point-up" />
+                          Intéressé(e) pour un échange
+                        </p>
+                      )}
                       <div className={styles.username}>
                         {offer.owner.account.avatar && (
                           <img

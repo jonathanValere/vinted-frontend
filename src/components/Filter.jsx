@@ -1,5 +1,6 @@
-import { useSearchParams } from "react-router-dom";
 import styles from "./Filter.module.css";
+
+import { useSearchParams } from "react-router-dom";
 
 export default function Filter({ data, setData, url }) {
   const [searchParams, setSearchParams] = useSearchParams();

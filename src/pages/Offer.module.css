@@ -21,6 +21,7 @@ article {
 
 .product-image {
   height: 600px;
+  max-width: 700px;
   object-fit: cover;
 }
 
@@ -63,4 +64,17 @@ article {
 
 .username img {
   border-radius: 50%;
+}
+
+.interesting {
+  background-color: #ecedee;
+  color: #474747;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  width: fit-content;
+}
+
+.interesting svg {
+  margin-right: 0.5rem;
 }

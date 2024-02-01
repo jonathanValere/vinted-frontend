@@ -1,5 +1,7 @@
 import styles from "./Banner.module.css";
+
 import Button from "./Button";
+
 import hero from "../assets/img/hero.svg";
 
 export default function Banner() {
