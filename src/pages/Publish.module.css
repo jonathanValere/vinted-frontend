@@ -140,7 +140,8 @@ input[type="checkbox"] {
 }
 
 .image-preview {
-  width: 300px;
+  max-width: 300px;
+  max-height: 250px;
   object-fit: cover;
 }
 
