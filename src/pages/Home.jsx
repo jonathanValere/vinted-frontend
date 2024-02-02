@@ -5,7 +5,7 @@ import axios from "axios";
 import Product from "../components/Product";
 import Banner from "../components/Banner";
 
-export default function Home({ data, setData, url }) {
+export default function Home({ data, setData, url, token }) {
   //Déclaration des states ---
   const [isLoading, setIsLoading] = useState(true);
   // Pour test ---
@@ -31,7 +31,7 @@ export default function Home({ data, setData, url }) {
   return (
     <>
       <section>
-        <Banner />
+        <Banner token={token} />
       </section>
 
       <section>

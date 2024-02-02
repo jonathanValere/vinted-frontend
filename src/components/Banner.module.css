@@ -13,8 +13,8 @@
 
 .bloc-info {
   background-color: #fff;
-  width: 12em;
-  padding: 1.7em 1em 0.5em 1em;
+  width: 27rem;
+  padding: 1.7em 1em 1.5em 1em;
   font-size: 2.2em;
   margin-top: 2em;
   border-radius: var(--border-radius);
@@ -22,9 +22,10 @@
 
 .bloc-info h1 {
   margin-bottom: 1em;
+  line-height: 2.6rem;
 }
 
-.bloc-info button {
+.button {
   font-size: 0.5em;
   color: #fff;
   padding: 0.9rem;
@@ -33,7 +34,7 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  text-decoration: none;
 }
 
 .hero {

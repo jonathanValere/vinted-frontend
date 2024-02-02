@@ -48,7 +48,9 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home data={data} setData={setData} url={url} />}
+            element={
+              <Home data={data} setData={setData} url={url} token={token} />
+            }
           />
           <Route path="/publish" element={<Publish token={token} />} />
           <Route path="/offer/:id" element={<Offer />} />

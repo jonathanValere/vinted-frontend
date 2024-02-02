@@ -57,7 +57,7 @@ header {
   text-decoration: none;
   margin-top: 0;
   font-size: 0.9rem;
-  padding: 0.4rem 1.1rem;
+  padding: 9px 9px;
   font-weight: 100;
   background-color: #fff;
   color: var(--primary-color);
@@ -70,6 +70,7 @@ header {
   background-color: var(--primary-color);
   color: #fff;
   border: 1px solid var(--primary-color);
+  padding: 9px 9px;
 }
 
 .logout-btn {

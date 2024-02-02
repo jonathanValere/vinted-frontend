@@ -30,7 +30,7 @@ export default function Login({ setToken, setVisible }) {
         expires: 1,
       });
       setToken(Cookies.get("userToken"));
-      return navigate("/");
+      return navigate("/publish");
     } catch (error) {
       const { message } = error.response.data;
       return setError(message);

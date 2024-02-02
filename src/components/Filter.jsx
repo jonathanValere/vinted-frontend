@@ -33,8 +33,15 @@ export default function Filter({ data, setData, url }) {
       <div>
         <span>
           Trier par prix :{" "}
-          <button onClick={() => handleFilter("asc")}>ascendant</button>{" "}
-          <button onClick={() => handleFilter("desc")}>descendant</button>
+          <button className={styles.button} onClick={() => handleFilter("asc")}>
+            ascendant
+          </button>{" "}
+          <button
+            className={styles.button}
+            onClick={() => handleFilter("desc")}
+          >
+            descendant
+          </button>
         </span>
         <span>Prix entre : </span>
       </div>
