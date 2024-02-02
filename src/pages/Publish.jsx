@@ -19,7 +19,7 @@ export default function Publish({ token }) {
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState(null);
   const [isInterestingToChange, setIsInterestingToChange] = useState(false);
 
   // Gestion du formulaire ----------
@@ -63,25 +63,38 @@ export default function Publish({ token }) {
     <section className={styles["publish-section"]}>
       <div className="container">
         <h1 className={styles["publish-title"]}>Vends ton article</h1>
-        <form
-          action=""
-          className={styles["publish-form"]}
-          onSubmit={handleSubmit}
-        >
+        <form className={styles["publish-form"]} onSubmit={handleSubmit}>
           <div className={styles["publish-form-part"]}>
-            <div id={styles.files}>
-              <label htmlFor="file">
-                <p id={styles["file-button"]}>
-                  <FontAwesomeIcon icon="plus" /> Ajoute une photo
-                </p>
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
-              </label>
-            </div>
+            {file === null ? (
+              <div id={styles.files}>
+                <label htmlFor="file">
+                  <p id={styles["file-button"]}>
+                    <FontAwesomeIcon icon="plus" /> Ajoute une photo
+                  </p>
+                  <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                </label>
+              </div>
+            ) : (
+              <div className={styles["image-preview-part"]}>
+                {file && (
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt="Image"
+                    className={styles["image-preview"]}
+                  />
+                )}
+                <span onClick={() => setFile(null)}>
+                  {" "}
+                  <FontAwesomeIcon icon="close" />
+                  Supprimer le fichier
+                </span>
+              </div>
+            )}
           </div>
           <div className={styles["publish-form-part"]}>
             <div className={styles.champs}>

@@ -129,3 +129,25 @@ input[type="checkbox"] {
   right: 0rem;
   cursor: pointer;
 }
+
+/* .image-preview-part {
+  background-color: aqua;
+} */
+
+.image-preview {
+  width: 300px;
+  object-fit: cover;
+}
+
+.image-preview-part span {
+  background-color: #a43333;
+  width: fit-content;
+  padding: 0.7rem;
+  color: #fff;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.image-preview-part span svg {
+  margin-right: 0.7rem;
+}
