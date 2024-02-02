@@ -91,7 +91,7 @@ export default function Publish({ token }) {
                 <span onClick={() => setFile(null)}>
                   {" "}
                   <FontAwesomeIcon icon="close" />
-                  Supprimer le fichier
+                  Supprimer l'image de votre article
                 </span>
               </div>
             )}

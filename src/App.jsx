@@ -19,13 +19,15 @@ import {
   faXmark,
   faHandPointUp,
   faPlus,
+  faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faMagnifyingGlass,
   faCircleExclamation,
   faXmark,
   faHandPointUp,
-  faPlus
+  faPlus,
+  faPowerOff
 );
 
 function App() {

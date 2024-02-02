@@ -64,7 +64,7 @@ export default function Header({
           <nav className={styles["navigation-header"]}>
             {token ? (
               <button onClick={handleLogout} className={styles["logout-btn"]}>
-                Se déconnecter
+                <FontAwesomeIcon icon="power-off" /> Se déconnecter
               </button>
             ) : (
               <>
