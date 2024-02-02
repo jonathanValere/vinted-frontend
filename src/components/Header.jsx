@@ -22,11 +22,12 @@ export default function Header({
   setVisible,
   data,
   setData,
+  search,
+  setSearch,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams(); // A FAIRE !!!
-  const [search, setSearch] = useState("");
 
   const handleLogout = () => {
     setToken(Cookies.remove("userToken"));
@@ -35,12 +36,7 @@ export default function Header({
 
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
-    const copyData = [...data];
-    const searchData = copyData.filter((product) =>
-      product.product_name.toLowerCase().includes(value)
-    );
-    setSearch(value);
-    setData(searchData);
+    return setSearch(value);
   };
 
   return (

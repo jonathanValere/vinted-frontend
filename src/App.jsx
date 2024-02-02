@@ -1,7 +1,7 @@
 import "./App.css";
-import Cookies from "js-cookie";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Header from "./components/Header";
 import Modal from "./components/Modal";
@@ -33,8 +33,9 @@ library.add(
 function App() {
   const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers"; // url du backend
   const [token, setToken] = useState(Cookies.get("userToken") || "");
-  const [visible, setVisible] = useState(false);
-  const [data, setData] = useState([]);
+  const [visible, setVisible] = useState(false); // State pour la Modal
+  const [data, setData] = useState([]); // State pour les données
+  const [search, setSearch] = useState(""); // State pour la barre de recherche
   return (
     <Router>
       <Header
@@ -45,13 +46,21 @@ function App() {
         data={data}
         setData={setData}
         url={url}
+        search={search}
+        setSearch={setSearch}
       />
       <main>
         <Routes>
           <Route
             path="/"
             element={
-              <Home data={data} setData={setData} url={url} token={token} />
+              <Home
+                data={data}
+                setData={setData}
+                url={url}
+                token={token}
+                search={search}
+              />
             }
           />
           <Route path="/publish" element={<Publish token={token} />} />

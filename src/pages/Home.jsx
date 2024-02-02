@@ -5,14 +5,14 @@ import axios from "axios";
 import Product from "../components/Product";
 import Banner from "../components/Banner";
 
-export default function Home({ data, setData, url, token }) {
+export default function Home({ data, setData, url, token, search }) {
   //Déclaration des states ---
   const [isLoading, setIsLoading] = useState(true);
   // Pour test ---
   // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
   //  ---
 
-  // Gestion du useEffect ----
+  // Gestion du useEffect (Récupération des offres depuis la base de données) ----
   useEffect(() => {
     fetchData();
   }, []);
@@ -28,6 +28,7 @@ export default function Home({ data, setData, url, token }) {
   };
 
   // -----
+
   return (
     <>
       <section>
@@ -41,22 +42,26 @@ export default function Home({ data, setData, url, token }) {
           ) : (
             <>
               <div className="products">
-                {/* Boucle sur les offres */}
-                {data.map((offer) => (
-                  // Afficher chacun des produits
-                  <div key={offer._id}>
-                    <Link
-                      // key={offer._id}
-                      to={`offer/${offer._id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Product
-                        offer={offer}
-                        onClick={() => handleClick(offer)}
-                      />
-                    </Link>
-                  </div>
-                ))}
+                {/* Boucle sur les offres en utilisant le filtrage avec la bar de recherche si utilisée */}
+                {data
+                  .filter((product) =>
+                    product.product_name.toLowerCase().includes(search)
+                  )
+                  .map((offer) => (
+                    // Afficher chacun des produits
+                    <div key={offer._id}>
+                      <Link
+                        // key={offer._id}
+                        to={`offer/${offer._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Product
+                          offer={offer}
+                          onClick={() => handleClick(offer)}
+                        />
+                      </Link>
+                    </div>
+                  ))}
               </div>
             </>
           )}
