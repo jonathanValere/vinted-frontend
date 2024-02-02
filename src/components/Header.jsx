@@ -1,7 +1,12 @@
 import styles from "./Header.module.css";
 
 import { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import Cookies from "js-cookie";
 
 import Info from "./Info";
@@ -18,6 +23,7 @@ export default function Header({
   data,
   setData,
 }) {
+  const location = useLocation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams(); // A FAIRE !!!
   const [search, setSearch] = useState("");
@@ -72,7 +78,7 @@ export default function Header({
             <Link to="/publish">Vends tes articles</Link>
           </nav>
         </div>
-        <Filter data={data} setData={setData} />
+        {location.pathname === "/" && <Filter data={data} setData={setData} />}
       </div>
     </header>
   );

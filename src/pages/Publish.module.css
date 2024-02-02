@@ -1,5 +1,5 @@
 .publish-section {
-  padding: 7rem 0;
+  padding: 4rem 0;
   background-color: #eaedee;
 }
 
@@ -130,9 +130,11 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* .image-preview-part {
-  background-color: aqua;
-} */
+.publish-form button:disabled {
+  background-color: #d3d3d3;
+  color: #808080;
+  cursor: not-allowed;
+}
 
 .image-preview {
   width: 300px;
