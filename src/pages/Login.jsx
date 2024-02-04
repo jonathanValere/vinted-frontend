@@ -1,5 +1,7 @@
+// Import styles component
 import styles from "./Login.module.css";
 
+// Import des packages
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,8 +11,8 @@ export default function Login({ setToken, setVisible }) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const urlOwn =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
+  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
+  // const backLocal = "http://localhost:3000/user/login";
 
   const handleChangeGeneric = (event, field) => {
     // Copie du state "user"
@@ -24,11 +26,14 @@ export default function Login({ setToken, setVisible }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(urlOwn, user);
-      Cookies.set("userToken", response.data.token, {
+      // la variable data me permet de récupérer le token provenant du serveur
+      const { data } = await axios.post(url, user);
+
+      // Je crée un cookie "userToken"
+      Cookies.set("userToken", data.token, {
         secure: true,
-        expires: 1,
       });
+      // Je modifie le state token avec la valeur du token
       setToken(Cookies.get("userToken"));
       return navigate("/publish");
     } catch (error) {

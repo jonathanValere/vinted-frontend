@@ -1,17 +1,9 @@
 import "./App.css";
+
+// Import packages
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
-
-import Header from "./components/Header";
-import Modal from "./components/Modal";
-import Home from "./pages/Home";
-import Offer from "./pages/Offer";
-import NotFound from "./pages/NotFound";
-import SignUp from "./pages/Signup";
-import Login from "./pages/Login";
-import Publish from "./pages/Publish";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faMagnifyingGlass,
@@ -29,6 +21,18 @@ library.add(
   faPlus,
   faPowerOff
 );
+
+// Import composants
+import Header from "./components/Header";
+import Modal from "./components/Modal";
+
+// Import pages
+import Home from "./pages/Home";
+import Offer from "./pages/Offer";
+import NotFound from "./pages/NotFound";
+import SignUp from "./pages/Signup";
+import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 
 function App() {
   const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers"; // url du backend

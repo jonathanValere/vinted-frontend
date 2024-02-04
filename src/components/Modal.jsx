@@ -8,43 +8,49 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Modal({ setVisible }) {
-  const [isEmailExist, setIsEmailExist] = useState("");
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    newsletter: false,
-  });
-  const backOwn =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
+  const [isError, setIsError] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [newsletter, setNewsletter] = useState(false);
+
+  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
+  // const backLocal = "http://localhost:3000/user/signup";
   const navigate = useNavigate();
-
-  // Gestion du formulaire
-  const handleChangeGeneric = (event, field) => {
-    // Copie du state
-    const copyUser = { ...user };
-
-    // Vérification pour la newsletter
-    field === "newsletter"
-      ? (copyUser["newsletter"] = !copyUser["newsletter"])
-      : (copyUser[field] = event.target.value);
-
-    // Mise à jour du state
-    return setUser(copyUser);
-  };
 
   // Gestion de la validation du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Instanciation de l'objet formData
+    const formData = new FormData();
+    // Ajouter des données
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("avatar", avatar);
+    formData.append("newsletter", newsletter);
+
     try {
-      const response = await axios.post(backOwn, user);
-      Cookies.set("userToken", response.data.token, { expires: 1 });
-      setIsEmailExist("");
+      const { data } = await axios.post(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      // Je crée un cookie à partir du Token généré par le serveur
+      Cookies.set("userToken", data.token);
+      // Si un message d'erreur était présent, je remets à zéro
+      setIsError("");
+      // Je masque la modal
       setVisible(false);
-      navigate("/");
-    } catch (error) {
-      const { message } = error.response.data;
-      setIsEmailExist(message);
+      // Redirection vers la page login
+      navigate("/login");
+    } catch (err) {
+      if (err.data.status === 500) {
+        console.error("An error occurred");
+      } else {
+        console.error(err.data.msg);
+      }
     }
   };
 
@@ -59,39 +65,47 @@ export default function Modal({ setVisible }) {
         <FontAwesomeIcon icon="xmark" onClick={() => setVisible(false)} />
         <div className={styles["form-container"]}>
           <h1>S'inscrire</h1>
-          {isEmailExist && <p className={styles.error}>{isEmailExist}</p>}
+          {isError && <p className={styles.error}>{isError}</p>}
           <form onSubmit={handleSubmit} className={styles.form}>
             <label htmlFor="">
               <input
                 type="text"
-                value={user.username}
+                value={username}
                 placeholder="Nom d'utilisateur"
-                onChange={(event) => handleChangeGeneric(event, "username")}
+                onChange={(event) => setUsername(event.target.value)}
               />
             </label>
             <label htmlFor="">
               <input
                 type="email"
-                value={user.email}
+                value={email}
                 placeholder="Email"
-                onChange={(event) => handleChangeGeneric(event, "email")}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </label>
             <label htmlFor="">
               <input
                 type="password"
-                value={user.password}
+                value={password}
                 placeholder="Mot de passe"
-                onChange={(event) => handleChangeGeneric(event, "password")}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </label>
+            <label htmlFor="avatar">
+              <input
+                type="file"
+                placeholder="Choisir son avatar"
+                id="avatar"
+                onChange={(e) => setAvatar(e.target.files[0])}
               />
             </label>
             <label htmlFor="" className={styles["label-checkbox"]}>
               <div className={styles.checkbox}>
                 <input
                   type="checkbox"
-                  value={user.newsletter}
-                  checked={user.newsletter}
-                  onChange={(event) => handleChangeGeneric(event, "newsletter")}
+                  value={newsletter}
+                  checked={newsletter}
+                  onChange={() => setNewsletter(!newsletter)}
                 />
                 <span>S'inscrire à notre newsletter</span>
               </div>
