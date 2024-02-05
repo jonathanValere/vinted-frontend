@@ -4,6 +4,7 @@ import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faMagnifyingGlass,
@@ -33,16 +34,18 @@ import NotFound from "./pages/NotFound";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 function App() {
   // Choix de l'url au cas où si je suis en prod ou en dev ---
-  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run"; // url du backend (prod)
-  // const url = "http://localhost:3000"; // url du backend (dev)
+  // const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run"; // url du backend (prod)
+  const url = "http://localhost:3000"; // url du backend (dev)
   // ------
   const [token, setToken] = useState(Cookies.get("userToken") || "");
   const [visible, setVisible] = useState(false); // State pour la Modal
   const [data, setData] = useState([]); // State pour les données
   const [search, setSearch] = useState(""); // State pour la barre de recherche
+
   return (
     <Router>
       <Header
@@ -73,7 +76,11 @@ function App() {
             path="/publish"
             element={<Publish token={token} url={url} />}
           />
-          <Route path="/offer/:id" element={<Offer url={url} />} />
+          <Route
+            path="/offer/:id"
+            element={<Offer url={url} token={token} />}
+          />
+          <Route path="/payment" element={<Payment url={url} />} />
           <Route path="/signup" element={<SignUp url={url} />} />
           <Route
             path="/login"

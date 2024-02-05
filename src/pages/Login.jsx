@@ -14,7 +14,6 @@ export default function Login({ setToken, setVisible, url }) {
   // const urlLogin = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
   // const urlLogin = "http://localhost:3000/user/login";
   const urlLogin = url + "/user/login";
-  console.log(urlLogin);
 
   const handleChangeGeneric = (event, field) => {
     // Copie du state "user"

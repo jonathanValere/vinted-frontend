@@ -1,20 +1,22 @@
 import styles from "./Offer.module.css";
 
+// Import packages
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Details from "../components/Details";
-import Button from "../components/Button";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// Import composants
+import Details from "../components/Details";
 
-export default function Offer({ url }) {
+export default function Offer({ url, token }) {
   //Déclaration des states ---
   const [offer, setOffer] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  // use Navigate
+  const navigate = useNavigate();
 
-  //Récupération de l'ID
+  //Récupération de l'ID de l'offre
   const { id } = useParams();
 
   // const urlBack = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/"; // Backend
@@ -35,6 +37,18 @@ export default function Offer({ url }) {
     setIsLoading(false);
   };
   // -----
+
+  const handleBuy = () => {
+    // Utilisateur doit être connecté pour acheter
+    token
+      ? navigate("/payment", {
+          state: {
+            title: offer.product_description,
+            price: offer.product_price,
+          },
+        })
+      : navigate("/login");
+  };
 
   return (
     <>
@@ -84,10 +98,12 @@ export default function Offer({ url }) {
                         {offer.owner.account.username}
                       </div>
                     </div>
-                    <Button
-                      title="Acheter"
+                    <button
                       className={styles["button-offer"]}
-                    />
+                      onClick={handleBuy}
+                    >
+                      Acheter
+                    </button>
                   </aside>
                 </div>
               )}
