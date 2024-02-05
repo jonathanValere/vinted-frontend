@@ -38,8 +38,8 @@ import Payment from "./pages/Payment";
 
 function App() {
   // Choix de l'url au cas où si je suis en prod ou en dev ---
-  // const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run"; // url du backend (prod)
-  const url = "http://localhost:3000"; // url du backend (dev)
+  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run"; // url du backend (prod)
+  // const url = "http://localhost:3000"; // url du backend (dev)
   // ------
   const [token, setToken] = useState(Cookies.get("userToken") || "");
   const [visible, setVisible] = useState(false); // State pour la Modal
