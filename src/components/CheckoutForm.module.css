@@ -1,0 +1,10 @@
+.button-pay {
+  background-color: #00c06d;
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: var(--border-radius);
+}

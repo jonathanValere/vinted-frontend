@@ -1,10 +1,12 @@
+import styles from "./CheckoutForm.module.css";
+
 // Import packages
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import axios from "axios";
 
-export default function CheckoutForm({ url, state }) {
+export default function CheckoutForm({ url, state, total }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -29,7 +31,7 @@ export default function CheckoutForm({ url, state }) {
       // Requète vers mon back avec le stripeToken et les différents éléments de l'offre
       const response = await axios.post(urlPayment, {
         stripeToken: stripeToken,
-        amount: price,
+        amount: total,
         description: title,
       });
       // Si la commande est validée, change le state completed
@@ -44,7 +46,9 @@ export default function CheckoutForm({ url, state }) {
   ) : (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit">Valider</button>
+      <button type="submit" className={styles["button-pay"]}>
+        Pay
+      </button>
     </form>
   );
 }
