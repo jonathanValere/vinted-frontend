@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export default function Login({ setToken, setVisible }) {
+export default function Login({ setToken, setVisible, url }) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
-  // const backLocal = "http://localhost:3000/user/login";
+  // const urlLogin = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/login";
+  // const urlLogin = "http://localhost:3000/user/login";
+  const urlLogin = url + "/user/login";
+  console.log(urlLogin);
 
   const handleChangeGeneric = (event, field) => {
     // Copie du state "user"
@@ -27,7 +29,7 @@ export default function Login({ setToken, setVisible }) {
     event.preventDefault();
     try {
       // la variable data me permet de récupérer le token provenant du serveur
-      const { data } = await axios.post(url, user);
+      const { data } = await axios.post(urlLogin, user);
 
       // Je crée un cookie "userToken"
       Cookies.set("userToken", data.token, {

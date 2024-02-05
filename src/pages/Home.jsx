@@ -8,6 +8,8 @@ import Banner from "../components/Banner";
 export default function Home({ data, setData, url, token, search }) {
   //Déclaration des states ---
   const [isLoading, setIsLoading] = useState(true);
+  // Concaténer url (dev ou prod)
+  const urlBack = url + "/offers";
   // Pour test ---
   // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offers";
   //  ---
@@ -19,7 +21,7 @@ export default function Home({ data, setData, url, token, search }) {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(urlBack);
       setData(response.data.offers);
       setIsLoading(false);
     } catch (error) {

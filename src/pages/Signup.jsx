@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-export default function SignUp({ visible, setVisible }) {
+export default function SignUp({ visible, setVisible, url }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState({
@@ -14,9 +14,9 @@ export default function SignUp({ visible, setVisible }) {
     password: "",
     newsletter: false,
   });
-
-  const backOwn =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
+  const urlSignup = url + "/user/signup"; // URL du back
+  // const urlSignup =
+  //   "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
 
   // Gestion du formulaire -------
   const handleChangeGeneric = (event, field) => {
@@ -36,7 +36,7 @@ export default function SignUp({ visible, setVisible }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(backOwn, user);
+      const response = await axios.post(urlSignup, user);
       // Création du cookie qui expire au bout d'un jour
       Cookies.set("userToken", response.data.token, { expires: 1 });
       // Mise à zéro le message d'erreur

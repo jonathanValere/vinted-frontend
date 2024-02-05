@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-export default function Publish({ token }) {
+export default function Publish({ token, url }) {
   const navigate = useNavigate();
-  const urlPublish =
-    "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/publish";
+
+  const urlPublish = url + "/offer/publish"; // url Back
+
   //Déclaration des states ---
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

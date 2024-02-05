@@ -7,7 +7,7 @@ import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Modal({ setVisible }) {
+export default function Modal({ setVisible, url }) {
   const [isError, setIsError] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -15,8 +15,8 @@ export default function Modal({ setVisible }) {
   const [avatar, setAvatar] = useState(null);
   const [newsletter, setNewsletter] = useState(false);
 
-  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/user/signup";
-  // const backLocal = "http://localhost:3000/user/signup";
+  const urlSignup = url + "/user/signup"; // url Back
+
   const navigate = useNavigate();
 
   // Gestion de la validation du formulaire
@@ -32,7 +32,7 @@ export default function Modal({ setVisible }) {
     formData.append("newsletter", newsletter);
 
     try {
-      const { data } = await axios.post(url, formData, {
+      const { data } = await axios.post(urlSignup, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -35,7 +35,10 @@ import Login from "./pages/Login";
 import Publish from "./pages/Publish";
 
 function App() {
-  const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offers"; // url du backend
+  // Choix de l'url au cas où si je suis en prod ou en dev ---
+  // const url = "https://site--backend-vinted--lkcrzmx4xyh5.code.run"; // url du backend (prod)
+  const url = "http://localhost:3000"; // url du backend (dev)
+  // ------
   const [token, setToken] = useState(Cookies.get("userToken") || "");
   const [visible, setVisible] = useState(false); // State pour la Modal
   const [data, setData] = useState([]); // State pour les données
@@ -49,7 +52,6 @@ function App() {
         setVisible={setVisible}
         data={data}
         setData={setData}
-        url={url}
         search={search}
         setSearch={setSearch}
       />
@@ -67,17 +69,22 @@ function App() {
               />
             }
           />
-          <Route path="/publish" element={<Publish token={token} />} />
-          <Route path="/offer/:id" element={<Offer />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/publish"
+            element={<Publish token={token} url={url} />}
+          />
+          <Route path="/offer/:id" element={<Offer url={url} />} />
+          <Route path="/signup" element={<SignUp url={url} />} />
           <Route
             path="/login"
-            element={<Login setToken={setToken} setVisible={setVisible} />}
+            element={
+              <Login setToken={setToken} setVisible={setVisible} url={url} />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      {visible && <Modal setVisible={setVisible} />}
+      {visible && <Modal setVisible={setVisible} url={url} />}
     </Router>
   );
 }

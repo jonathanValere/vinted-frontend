@@ -9,15 +9,16 @@ import Button from "../components/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Offer() {
+export default function Offer({ url }) {
   //Déclaration des states ---
-  const [offer, setOffer] = useState();
+  const [offer, setOffer] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const backLeReacteur = "https://lereacteur-vinted-api.herokuapp.com/offer/";
-  const backOwn = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/";
 
   //Récupération de l'ID
   const { id } = useParams();
+
+  // const urlBack = "https://site--backend-vinted--lkcrzmx4xyh5.code.run/offer/"; // Backend
+  const urlOffer = `${url}/offer/${id}`; // url Back
 
   // Gestion du useEffect ----
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Offer() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${backOwn}${id}`);
+      const response = await axios.get(urlOffer);
       setOffer(response.data);
     } catch (error) {
       console.log(error.response);
